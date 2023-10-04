@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Details</title>
+</head>
+<body>
+	<section>
+
+		<div th:if="${contact}" style="margin-right: 10px; margin-left: 14px;" class="card">
+			<div class="card-body" >
+			<!-- message on success/failure -->
+						
+						<div th:if="${session.message}" class="container ">
+							<div th:classappend="${'alert-'+session.message.type}" class="alert text-center" role="alert">
+								<span th:text="${session.message.content}"></span>
+							</div>
+							<th:block th:text="${#session.removeAttribute('message')}"> </th:block>	
+						</div>
+					
+			
+				<div class="container text-center">
+					<img style="height: 200px; width: 200px;"
+						class="my_profile_picture" src=""
+						th:src="@{'/images/'+${contact.image}}" alt="profile picture" />
+					<h1>
+						<span th:text="${contact.name}"></span>(<span
+							th:text="${contact.secondName}"></span>)
+					</h1>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">#ID</th>
+								<th scope="col">SCM2021<span th:text="${contact.cId}"></span></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td scope="col"><span th:text="${contact.email}"></span></td>
+								
+							</tr>
+							
+							<tr>
+								<th scope="row">Phone</th>
+								<td scope="col"><span th:text="${contact.phone}"></span></td>
+								
+							</tr>
+							<tr>
+								<th scope="row">Work</th>
+								<td scope="col"><span th:text="${contact.work}"></span></td>
+								
+							</tr>
+							
+						</tbody>
+					</table>
+					<div class="description">
+						<h4>Description</h4>
+						<th:block th:utext="${contact.description}"></th:block>
+						
+						
+					</div>
+					
+					<div class="container mt-2"  style="display: flex;justify-content:center;" >
+						<table class="table-responsive"  >
+						<tr>
+						<td >
+							<form th:action="@{'/user/update-contact/'+${contact.cId}}" method="post">
+								<button type="submit" class="btn btn-success btn-small" >Update</button>
+							</form>
+							</td>
+							<td>
+						<button th:onclick="|deleteContact(${contact.cId})|" class="btn btn-danger btn-small">Delete</button>
+						</td>
+						</tr>
+						</table>
+					</div>
+						
+					
+					
+				</div>
+			</div>
+			
+		</div>
+		
+			
+				<h1 class="text-center p-3 bg-danger text-white " th:unless="${contact}">You don't have permission to see this contact...</h1>
+			
+	</section>
+</body>
+</html>

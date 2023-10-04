@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>About Us</title>
+</head>
+<body>
+	<section>
+
+	
+		<div class="card text-center ml-20" style="width: auto;height:500px;margin:40px;">
+	
+			<div class="card-body" style="padding:30px;">
+				<h1 class="card-title">About Us</h1>
+			
+				<p class="card-text">This is a web based <b>Smart Contact Manager</b> project. Here you can store your contacts 
+				on the clouds for future use in a very efficient way with good user interface experience.				
+				 </p>
+				
+			<a th:href="@{/signup}" class="btn bg-primary btn-lg text-white">Get Start</a>
+			</div>
+		</div>
+	
+	</section>
+</body>
+</html>

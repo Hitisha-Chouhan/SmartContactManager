@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Login</title>
+
+</head>
+<body>
+	<section>
+		<div class="container" style="margin-top: 50px;">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card" style="border:1px solid #9C9C9C;">
+
+
+
+						<form method="post" th:action="@{/login}" >
+							<h3 class="text-center text-info">Login</h3>
+							<div th:if="${param.error}"
+								class="alert alert-danger text-center">Invalid username
+								and password</div>
+							<div th:if="${param.logout}"
+								class="alert alert-success text-center">You have
+								successfully logout</div>
+
+							<div th:if="${param.change}"
+								class="alert alert-success text-center">
+								<p th:text="${param.change}"></p>
+							</div>
+
+
+							<div class="form-group">
+								<label for="username" class="text-info">Username </label> <input type="text"
+									name="username" class="form-control" id="username"
+									placeholder="Enter username here" required />
+
+							</div>
+
+
+							<div class="form-group">
+								<label for="password" class="text-info">Password</label> <input
+									type="password" class="form-control" id="password"
+									aria-describedby="emailHelp" name="password"
+									placeholder="Enter your password here" required />
+
+
+							</div>
+
+							<div class="container text-center ">
+								<a th:href="@{/signup}"  href="#" class="card-link text-info">Register Here</a> 
+								<a th:href="@{/forgot}" href="#" class="card-link text-info">Forgot Password?</a>
+							</div>
+							<div class="container mt-2 text-center">
+								<input type="submit" name="submit"
+									class="btn btn-info btn-md text-center" value="Submit">
+
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+
+		</div>
+
+
+	</section>
+</body>
+</html>
